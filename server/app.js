@@ -34,7 +34,7 @@ app.post('/api/bookings/:restaurantId', (req, res) => {
     if (err) {
       res.status(400).send('could not reserve');
     } else {
-      res.status(200).send('reservation made');
+      res.status(201).send('reservation made');
     }
   });
 });
