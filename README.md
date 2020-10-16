@@ -52,7 +52,7 @@ The request takes no properties. It will only use the restaurant Id included in 
 ### Request Data Format:
 ```sh
 {
-  date: *String
+  date: String
   partySize: Integer
 }
 ```
@@ -94,11 +94,11 @@ The request will require 6 properties: reservation_id, the party size, the name 
 ### Request Data Format:
 ```sh
 {
-  reservation_id: int
-  party_size: int
-  name: string
-  date: *String
-  occasion: *String
+  reservation_id: Integer
+  party_size: Integer
+  name: String
+  date: String
+  occasion: String
 }
 ```
 ### Response Body: N/A
@@ -114,7 +114,7 @@ This request will removed the reservation tied to the supplied id from the datab
 ### Request Data Format:
 ```sh
 {
-  reservation_id: int
+  reservation_id: Integer
 }
 ```
 ### Response Body: N/A
