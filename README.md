@@ -87,15 +87,15 @@ The request will require four properties: time for reservation, the party size, 
 201
 ```
 # PUT - Update Reservation:
-The request will require 6 properties: reservation_id, the party size, the name of reserver, phone-number of reserver, the date of the reservation and the occasion. A successful request will respond with 204.
+The request will require 6 properties: reservationId, the party size, the name of reserver, phone-number of reserver, the date of the reservation and the occasion. A successful request will respond with 204.
 
 ### End Point: /api/updateBooking/:bookingId
 ### Method: PUT
 ### Request Data Format:
 ```sh
 {
-  reservation_id: Integer
-  party_size: Integer
+  reservationId: Integer
+  partySize: Integer
   name: String
   date: String
   occasion: String
@@ -114,7 +114,7 @@ This request will removed the reservation tied to the supplied id from the datab
 ### Request Data Format:
 ```sh
 {
-  reservation_id: Integer
+  reservationId: Integer
 }
 ```
 ### Response Body: N/A
