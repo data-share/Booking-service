@@ -100,7 +100,7 @@ occasion: *String
 # DELETE - Delete Reservation:
 This request will removed the reservation tied to the supplied id from the database. A successful request will respond with 204.
 
-### End Point: /api/deleteBooking/
+### End Point: /api/deleteBooking/:bookingId
 ### Method: DELETE
 ### Request Data Format:
 reservation_id: int
