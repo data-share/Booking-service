@@ -74,7 +74,7 @@ The request will require four properties: time for reservation, the party size, 
 ### Request Data Format:
 ```sh
 {
-  date: *String
+  date: String
   partySize: Integer
   name: String
   contactInfo: String
