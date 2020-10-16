@@ -73,11 +73,13 @@ The request will require four properties: time for reservation, the party size, 
 ### End Point: /api/bookings/:restaurantId
 ### Method: GET
 ### Request Data Format:
-date: *String
-partySize: Integer
-name: String
-contactInfo: String
-occasion (optional): String
+{
+  date: *String
+  partySize: Integer
+  name: String
+  contactInfo: String
+  occasion (optional): String
+}
 ### Response Body: N/A
 ### Success response status code:
 201
@@ -88,11 +90,13 @@ The request will require 6 properties: reservaion_id, the party size, the name o
 ### End Point: /api/updateBooking/:bookingId
 ### Method: PUT
 ### Request Data Format:
-reservation_id: int
-party_size: int
-name: string
-date: *String
-occasion: *String
+{
+  reservation_id: int
+  party_size: int
+  name: string
+  date: *String
+  occasion: *String
+}
 ### Response Body: N/A
 ### Success response status code:
 204
@@ -103,7 +107,9 @@ This request will removed the reservation tied to the supplied id from the datab
 ### End Point: /api/deleteBooking/:bookingId
 ### Method: DELETE
 ### Request Data Format:
-reservation_id: int
+{
+  reservation_id: int
+}
 ### Response Body: N/A
 ### Success response status code:
 204
