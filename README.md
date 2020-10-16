@@ -4,10 +4,9 @@ This is a feature to see available times for selected dates and number of guests
 
 ## Related Projects
 
-  - https://github.com/TKOut-HRSF130/popular-dishes-service
-  - https://github.com/TKOut-HRSF130/photos-carousel-service
-  - https://github.com/TKOut-HRSF130/bookings-service
-  - https://github.com/TKOut-HRSF130/reviews-service
+  - https://github.com/data-share/popular-dishes-service
+  - https://github.com/data-share/photo-gallery-service
+  - https://github.com/data-share/reviews
 
 ## Table of Contents
 
@@ -58,8 +57,11 @@ The request takes no properties. It will only use the restaurant Id included in 
 ### End Point : /api/bookings/restaurantName/:restaurantId
 ### Method: GET
 ### Request Data Format:
-date: *String
-partySize: Integer
+```sh{
+  date: *String
+  partySize: Integer
+}
+```
 ### Response body:
 {
   restaurantName: "name"
@@ -85,7 +87,7 @@ The request will require four properties: time for reservation, the party size, 
 201
 
 # PUT - Update Reservation:
-The request will require 6 properties: reservaion_id, the party size, the name of reserver, phone-number of resrver, the date of the reservation and the occasion. A successful request will respond with 204.
+The request will require 6 properties: reservation_id, the party size, the name of reserver, phone-number of reserver, the date of the reservation and the occasion. A successful request will respond with 204.
 
 ### End Point: /api/updateBooking/:bookingId
 ### Method: PUT
@@ -116,7 +118,7 @@ This request will removed the reservation tied to the supplied id from the datab
 
 *Date string to be in 'December 17, 1995 03:24:00' format. Will also need to be rounded to the nearest 30 minutes to give relevant data.
 ### Data Schema
-How will your data be stored? What DBMS do you plan to use and why? If you are using a SQL database, what is the schema for this data (create an ER diagram)? It is useful to think about the organization of your data in a DMBS even if you are using a noSQL datastore. In that case describe the shape of the data for all collections you plan to use.
+How will your data be stored? What DBMS do you plan to use and why? If you are using a SQL database, what is the schema for this data (create an ER diagram)? It is useful to think about the organization of your data in a DBMS even if you are using a noSQL datastore. In that case describe the shape of the data for all collections you plan to use.
 
 The data for the reservations will be stored in a SQL database. There will be two tables, one containing all the restaurants and one containing all the reservations. The relation between restaurants and reservations will be one to many. Each reservation will reference a specific restaurant through its restaurant ID.
 
