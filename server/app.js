@@ -51,4 +51,13 @@ app.get('/api/bookings/:restaurantId', (req, res) => {
   });
 });
 
+app.put('/api/updateBooking/:bookingId', (req, res) => {
+  const reservation = req.query;
+  reservation.restaurantId = req.params.restaurantId;
+  db.updateReservation(reservation, (err,) => {
+
+  })
+})
+
+app.delete(' /api/deleteBooking/:bookingId')
 module.exports = app;

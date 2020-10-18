@@ -45,21 +45,28 @@ The request will require two properties: the time for reservation and the party 
 
 
 # Get restaurant name
-The request takes no properties. It will only use the restaurant Id included in the API endpoint and respond with a the name of that specific restaurant.
+The request takes no properties. It will only use the restaurant Id included in the API endpoint and respond with a the information that is specific to the id given.
 
-### End Point : /api/bookings/restaurantName/:restaurantId
+### End Point : /api/restaurant/:restaurantID
 ### Method: GET
-### Request Data Format:
+### Path Param:
 ```sh
 {
-  date: String
-  partySize: Integer
+  restaurantID: Number
 }
+```
+### Request Data Format:
+```sh
+  NONE
 ```
 ### Response body:
 ```sh
 {
-  restaurantName: "name"
+  id: Number,
+  restaurantName: "name",
+  capacity: Number,
+  openHrs: String,
+  closingHrs: String
 }
 ```
 ### Success response status code:
@@ -67,10 +74,19 @@ The request takes no properties. It will only use the restaurant Id included in 
 200
 ```
 # Post - Reserve a table
-The request will require four properties: time for reservation, the party size, the name of reserver and phone-number of reserver. Fifth property of occasion will be optional. A successful request will have a response with a status 201.
+The request will require a path param tied to the reservation and five other properties:
+the date of the reservation, time for reservation, the party size, the name of reserver and phone-number of reserver. Fifth property of occasion will be optional. A successful request will have a response with a status 201.
 
-### End Point: /api/bookings/:restaurantId
-### Method: GET
+
+
+### End Point: /api/restaurant/:restaurantID/booking
+### Method: POST
+### Path Param:
+```sh
+{
+  restaurantID: Number
+}
+```
 ### Request Data Format:
 ```sh
 {
@@ -89,8 +105,14 @@ The request will require four properties: time for reservation, the party size, 
 # PUT - Update Reservation:
 The request will require 6 properties: reservationId, the party size, the name of reserver, phone-number of reserver, the date of the reservation and the occasion. A successful request will respond with 204.
 
-### End Point: /api/updateBooking/:bookingId
+### End Point: /api/bookings/:bookingId
 ### Method: PUT
+### Path Param:
+```sh
+{
+  bookingId: Number
+}
+```
 ### Request Data Format:
 ```sh
 {
@@ -109,13 +131,17 @@ The request will require 6 properties: reservationId, the party size, the name o
 # DELETE - Delete Reservation:
 This request will removed the reservation tied to the supplied id from the database. A successful request will respond with 204.
 
-### End Point: /api/deleteBooking/:bookingId
+### End Point: /api/booking/:bookingId
 ### Method: DELETE
-### Request Data Format:
+### Path Param:
 ```sh
 {
   reservationId: Integer
 }
+```
+### Request Data Format:
+```sh
+NONE
 ```
 ### Response Body: N/A
 ### Success response status code:
