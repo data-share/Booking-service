@@ -25,3 +25,7 @@ build/
 dist/
 
 config.js
+
+postgres/bookings.csv
+postgres/restaurants.csv
+postgres/users.csv
