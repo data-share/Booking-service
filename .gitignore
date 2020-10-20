@@ -26,6 +26,16 @@ dist/
 
 config.js
 
+#postgres files
 postgres/bookings.csv
 postgres/restaurants.csv
 postgres/users.csv
+
+#arango files
+arangodb/bookings.csv
+arangodb/users.csv
+arangodb/restaurants.csv
+
+
+#keys
+env.json

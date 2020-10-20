@@ -42,12 +42,11 @@ db.listDatabases().then((names) => {
         rule: {
           'type': 'object',
           'properties': {
-            'firstName': { 'type': 'string' },
-            'lastName': { 'type': 'string' },
-            'phoneNumber': { 'type': 'string' },
-            'email': { 'type': 'string' },
-            'partySize': { 'type': 'number' },
+            'bookingId': { 'type': 'number' },
+            'date': { 'type': 'string' },
+            'userId': { 'type': 'number' },
             'restaurantId': { 'type': 'number' },
+            'partySize': { 'type': 'number' },
             'occasion': { 'type': 'string' },
             'specialRequest': { 'type': 'string' }
           }
