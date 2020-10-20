@@ -5,22 +5,23 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const csvRestaurants = createCsvWriter({
   path: 'restaurants.csv',
   header: [
-    { id: 'key', title: '' },
-    { id: 'name', title: '' },
-    { id: 'capacity', title: '' },
-    { id: 'openHrs', title: '' },
-    { id: 'closingHrs', title: '' },
-  ]
+    { id: 'restaurantId', title: 'restaurantId' },
+    { id: 'name', title: 'name' },
+    { id: 'capacity', title: 'capacity' },
+    { id: 'openHrs', title: 'openHrs' },
+    { id: 'closingHrs', title: 'closedHrs' },
+  ],
+  append: true
 });
 
 const csvUsers = createCsvWriter({
   path: 'users.csv',
   header: [
-    { id: 'userId', title: '' },
-    { id: 'firstName', title: '' },
-    { id: 'lastName', title: '' },
-    { id: 'phoneNumber', title: '' },
-    { id: 'email', title: '' },
+    { id: 'userId', title: 'userId' },
+    { id: 'firstName', title: 'firstName' },
+    { id: 'lastName', title: 'lastName' },
+    { id: 'phoneNumber', title: 'phoneNumber' },
+    { id: 'email', title: 'email' },
   ],
   append: true
 })
@@ -28,13 +29,13 @@ const csvUsers = createCsvWriter({
 const csvBookings = createCsvWriter({
   path: 'bookings.csv',
   header: [
-    { id: 'bookingId', title: '' },
-    { id: 'date', title: '' },
-    { id: 'userId', title: '' },
-    { id: 'restaurantId', title: '' },
-    { id: 'partySize', title: '' },
-    { id: 'occasion', title: '' },
-    { id: 'specialRequest', title: '' },
+    { id: 'bookingId', title: 'bookingId' },
+    { id: 'date', title: 'date' },
+    { id: 'userId', title: 'userId' },
+    { id: 'restaurantId', title: 'restaurantId' },
+    { id: 'partySize', title: 'partySize' },
+    { id: 'occasion', title: 'occasion' },
+    { id: 'specialRequest', title: 'specialRequest' },
   ],
   append: true
 })
@@ -48,7 +49,7 @@ const restaurant = (index) => {
   const close = faker.random.number({ 'min': 9, 'max': 11 })
   const closingHrs = `${close}:00 P.M.`;
 
-  return { key: id, name: name, capacity: capacity, openHrs: openHrs, closingHrs: closingHrs }
+  return { restaurantId: id, name: name, capacity: capacity, openHrs: openHrs, closingHrs: closingHrs }
 }
 
 
@@ -62,46 +63,66 @@ const userDb = (index) => {
   return { userId: index, firstName: firstName, lastName: lastName, phoneNumber: phone, email: email }
 }
 
+const min = ['00', '15', '30', '45'];
+const listOfOccasions = ['Birthday', 'Anniversary', 'Date Night', 'Business Meal', 'Celebration', 'None'];
 
 const bookings = (index) => {
-  let date = faker.date.soon();
+  let date = new Date();
+  date.setDate(date.getDate() + (Math.floor(Math.random() * 30)))
+  let reservation = `${date.getMonth() + 1}/${date.getDay() + 1}/${date.getFullYear()}/${faker.random.number({ 'min': 8, 'max': 23 })}:${min[Math.floor(Math.random() * 4)
+  ]}`;
+
   let userId = faker.random.number({ 'min': 1, 'max': 10000000 });
   let restaurantId = faker.random.number({ 'min': 1, 'max': 10000000 });
   let partySize = faker.random.number({ 'min': 2, 'max': 10 });
-  let occasion = faker.lorem.word();
-  let specialRequest = faker.lorem.word();
+  let occasion = listOfOccasions[faker.random.number({ 'min': 0, 'max': 5 })];
+  let specialRequest = 'None';
 
-  return { bookingId: index, date: date, userId: userId, restaurantId: restaurantId, partySize: partySize, occasion: occasion, specialRequest: specialRequest }
+  return { bookingId: index, date: `${reservation}`, userId: `${userId}`, restaurantId: `${restaurantId}`, partySize: `${partySize}`, occasion: `${occasion}`, specialRequest: `${specialRequest}` }
 }
 
+let record = [];
+const bookingHeader = ['bookingId', 'date', 'userId', 'restaurantId', 'partySize', 'occasion', 'specialRequest'];
 
 
-let record = []
-// for (let i = 1; i <= 10000000; i += 1) {
-//   record.push(restaurant(i))
-//   if (i % 10000 === 0) {
-//     console.log('restaurant record ' + i + 'completed')
-//   }
-// }
-// csvRestaurants.writeRecords(record).then(() => {
-//   console.log('completed');
-//   record = [];
-//   //users
+function writeRestaurant(arr, index) {
+  let temp = arr.slice();
 
-// });
+  csvRestaurants.writeRecords(temp).then(() => {
+    console.log('completed writing' + index + ' to file');
+  }).catch((err) => {
+    console.log(err);
+  })
+
+}
+
+for (let i = 1; i <= 10000000; i += 1) {
+  record.push(restaurant(i))
+  if (i % 10000 === 0) {
+    console.log('restaurant record ' + i + 'completed')
+    writeRestaurant(record, i);
+    record = [];
+  }
+}
+
+  //users
+
+
+
 // const writeUsers = (arr, index) => {
+//   let temp = arr.slice();
 //   csvUsers.writeRecords(arr, { append: true }).then(() => {
 //     console.log('completed writing' + index + ' to file');
-//     record = [];
-//     //bookings
+//     arr = [];
 //   })
 // }
 // console.log('starting user csv generation')
-// for (let i = 9000000; i <= 10000000; i += 1) {
+// for (let i = 1; i <= 10000000; i += 1) {
 //   record.push(userDb(i));
 //   if (i % 10000 === 0) {
 //     console.log('user record ' + i + ' written');
-
+//     writeUsers(record, i);
+//     record = [];
 //   }
 // }
 
@@ -110,13 +131,19 @@ let record = []
 //   //bookings
 // })
 
-for (let i = 9000000; i <= 10000000; i += 1) {
-  record.push(bookings(i));
-  if (i % 10000 === 0) {
-    console.log('booking record ' + i + ' written');
 
-  }
-}
-csvBookings.writeRecords(record).then(() => {
-  console.log('completed ');
-})
+// function writeBooking(arr, i) {
+//   let temp = arr.slice();
+
+//   csvBookings.writeRecords(temp).then(() => {
+//     console.log('completed ' + i);
+//   }).catch((err) => { console.log(err) })
+// }
+// for (let i = 40000001; i <= 60000000; i += 1) {
+//   record.push(bookings(i));
+//   if (i % 10000 === 0) {
+//     console.log('booking record ' + i + ' written');
+//     writeBooking(record, i);
+//     record = [];
+//   }
+// }

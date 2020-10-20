@@ -5,22 +5,23 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const csvRestaurants = createCsvWriter({
   path: 'restaurants.csv',
   header: [
-    { id: 'key', title: '' },
-    { id: 'name', title: '' },
-    { id: 'capacity', title: '' },
-    { id: 'openHrs', title: '' },
-    { id: 'closingHrs', title: '' },
-  ]
+    { id: 'restaurantId', title: 'restaurantId' },
+    { id: 'name', title: 'name' },
+    { id: 'capacity', title: 'capacity' },
+    { id: 'openHrs', title: 'openHrs' },
+    { id: 'closingHrs', title: 'closedHrs' },
+  ],
+  append: true
 });
 
 const csvUsers = createCsvWriter({
   path: 'users.csv',
   header: [
-    { id: 'userId', title: '' },
-    { id: 'firstName', title: '' },
-    { id: 'lastName', title: '' },
-    { id: 'phoneNumber', title: '' },
-    { id: 'email', title: '' },
+    { id: 'userId', title: 'userId' },
+    { id: 'firstName', title: 'firstName' },
+    { id: 'lastName', title: 'lastName' },
+    { id: 'phoneNumber', title: 'phoneNumber' },
+    { id: 'email', title: 'email' },
   ],
   append: true
 })
@@ -48,7 +49,7 @@ const restaurant = (index) => {
   const close = faker.random.number({ 'min': 9, 'max': 11 })
   const closingHrs = `${close}:00 P.M.`;
 
-  return { key: id, name: name, capacity: capacity, openHrs: openHrs, closingHrs: closingHrs }
+  return { restaurantId: id, name: name, capacity: capacity, openHrs: openHrs, closingHrs: closingHrs }
 }
 
 
@@ -84,56 +85,65 @@ let record = [];
 const bookingHeader = ['bookingId', 'date', 'userId', 'restaurantId', 'partySize', 'occasion', 'specialRequest'];
 
 
-// for (let i = 1; i <= 10000000; i += 1) {
-//   record.push(restaurant(i))
-//   if (i % 10000 === 0) {
-//     console.log('restaurant record ' + i + 'completed')
-//   }
-// }
-// csvRestaurants.writeRecords(record).then(() => {
-//   console.log('completed');
-//   record = [];
-//   //users
-
-// });
-// const writeUsers = (arr, index) => {
-//   csvUsers.writeRecords(arr, { append: true }).then(() => {
-//     console.log('completed writing' + index + ' to file');
-//     record = [];
-//     //bookings
-//   })
-// }
-// console.log('starting user csv generation')
-// for (let i = 9000000; i <= 10000000; i += 1) {
-//   record.push(userDb(i));
-//   if (i % 10000 === 0) {
-//     console.log('user record ' + i + ' written');
-
-//   }
-// }
-
-csvUsers.writeRecords(record).then(() => {
-  console.log('completed writing to file');
-  //bookings
-})
-
-
-function writeBooking(arr, i) {
+function writeRestaurant(arr, index) {
   let temp = arr.slice();
 
-  csvBookings.writeRecords(temp).then(() => {
-    console.log('completed ' + i);
-  }).catch((err) => { console.log(err) })
+  csvRestaurants.writeRecords(temp).then(() => {
+    console.log('completed writing' + index + ' to file');
+  }).catch((err) => {
+    console.log(err);
+  })
+
 }
-for (let i = 40000001; i <= 60000000; i += 1) {
-  record.push(bookings(i));
+
+for (let i = 1; i <= 10000000; i += 1) {
+  record.push(restaurant(i))
   if (i % 10000 === 0) {
-    console.log('booking record ' + i + ' written');
-    writeBooking(record, i);
+    console.log('restaurant record ' + i + 'completed')
+    writeRestaurant(record, i);
     record = [];
   }
 }
-// csvBookings.writeRecords(record).then(() => {
-//   console.log('completed ');
+
+  //users
+
+
+
+// const writeUsers = (arr, index) => {
+//   let temp = arr.slice();
+//   csvUsers.writeRecords(arr, { append: true }).then(() => {
+//     console.log('completed writing' + index + ' to file');
+//     arr = [];
+//   })
+// }
+// console.log('starting user csv generation')
+// for (let i = 1; i <= 10000000; i += 1) {
+//   record.push(userDb(i));
+//   if (i % 10000 === 0) {
+//     console.log('user record ' + i + ' written');
+//     writeUsers(record, i);
+//     record = [];
+//   }
+// }
+
+// csvUsers.writeRecords(record).then(() => {
+//   console.log('completed writing to file');
+//   //bookings
 // })
 
+
+// function writeBooking(arr, i) {
+//   let temp = arr.slice();
+
+//   csvBookings.writeRecords(temp).then(() => {
+//     console.log('completed ' + i);
+//   }).catch((err) => { console.log(err) })
+// }
+// for (let i = 40000001; i <= 60000000; i += 1) {
+//   record.push(bookings(i));
+//   if (i % 10000 === 0) {
+//     console.log('booking record ' + i + ' written');
+//     writeBooking(record, i);
+//     record = [];
+//   }
+// }

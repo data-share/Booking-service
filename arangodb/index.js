@@ -68,6 +68,7 @@ db.listDatabases().then((names) => {
         rule: {
           'type': 'object',
           'properties': {
+            'restaurantId': { 'type': 'number' },
             'name': { 'type': 'string' },
             'capacity': { 'type': 'number' },
             'openHrs': { 'type': 'object' },
@@ -92,6 +93,7 @@ db.listDatabases().then((names) => {
         rule: {
           'type': 'object',
           'properties': {
+            'userId': { 'type': 'number' },
             'firstName': { 'type': 'string' },
             'lastName': { 'type': 'string' },
             'phoneNumber': { 'type': 'string' },
