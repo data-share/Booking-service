@@ -51,8 +51,8 @@ db.listDatabases().then((names) => {
             'specialRequest': { 'type': 'string' }
           }
         },
-        'message': "Booking Schema Validation Failed."
-      }
+        'message': 'Booking Schema Validation Failed.'
+      };
       const bookings = db.createCollection('bookings', { 'schema': bookingSchema })
         .then(
           () => {
@@ -61,7 +61,7 @@ db.listDatabases().then((names) => {
           (err) => {
             console.error(err);
           }
-        )
+        );
 
       //restaurants collection
       const restaurantSchema = {
@@ -71,12 +71,12 @@ db.listDatabases().then((names) => {
             'restaurantId': { 'type': 'number' },
             'name': { 'type': 'string' },
             'capacity': { 'type': 'number' },
-            'openHrs': { 'type': 'object' },
-            'closedHrs': { 'type': 'object' }
+            'openHrs': { 'type': 'string' },
+            'closedHrs': { 'type': 'string' }
           }
         },
-        'message': "Restaurant Schema Validation Failed."
-      }
+        'message': 'Restaurant Schema Validation Failed.'
+      };
       const restaurants = db.createCollection('restaurants', { 'schema': restaurantSchema })
         .then(
           () => {
@@ -85,7 +85,7 @@ db.listDatabases().then((names) => {
           (err) => {
             console.error(err);
           }
-        )
+        );
 
       //users collection
 
@@ -100,8 +100,8 @@ db.listDatabases().then((names) => {
             'email': { 'type': 'string' }
           }
         },
-        'message': "User Schema Validation Failed."
-      }
+        'message': 'User Schema Validation Failed.'
+      };
 
       const users = db.createCollection('users', { 'schema': userSchema })
         .then(
@@ -111,10 +111,10 @@ db.listDatabases().then((names) => {
           (err) => {
             console.error(err);
           }
-        )
-    })
+        );
+    });
   }
-})
+});
 
 
 
