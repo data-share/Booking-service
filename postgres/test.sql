@@ -42,5 +42,8 @@ CREATE TABLE bookings
 );
 
 
+COPY restaurants FROM '/Users/michael/HRSF130/SDC/Booking/Booking-service/postgres/restaurants.csv' DELIMITER ',' ;
+COPY users FROM '/Users/michael/HRSF130/SDC/Booking/Booking-service/postgres/users.csv' DELIMITER ',' ;
+COPY bookings FROM '/Users/michael/HRSF130/SDC/Booking/Booking-service/postgres/bookings.csv' DELIMITER ',' ;
 
 -- psql -U postgres -a -f (file name)

@@ -42,18 +42,17 @@ db.listDatabases().then((names) => {
         rule: {
           'type': 'object',
           'properties': {
-            'firstName': { 'type': 'string' },
-            'lastName': { 'type': 'string' },
-            'phoneNumber': { 'type': 'string' },
-            'email': { 'type': 'string' },
-            'partySize': { 'type': 'number' },
+            'bookingId': { 'type': 'number' },
+            'date': { 'type': 'string' },
+            'userId': { 'type': 'number' },
             'restaurantId': { 'type': 'number' },
+            'partySize': { 'type': 'number' },
             'occasion': { 'type': 'string' },
             'specialRequest': { 'type': 'string' }
           }
         },
-        'message': "Booking Schema Validation Failed."
-      }
+        'message': 'Booking Schema Validation Failed.'
+      };
       const bookings = db.createCollection('bookings', { 'schema': bookingSchema })
         .then(
           () => {
@@ -62,21 +61,22 @@ db.listDatabases().then((names) => {
           (err) => {
             console.error(err);
           }
-        )
+        );
 
       //restaurants collection
       const restaurantSchema = {
         rule: {
           'type': 'object',
           'properties': {
+            'restaurantId': { 'type': 'number' },
             'name': { 'type': 'string' },
             'capacity': { 'type': 'number' },
-            'openHrs': { 'type': 'object' },
-            'closedHrs': { 'type': 'object' }
+            'openHrs': { 'type': 'string' },
+            'closedHrs': { 'type': 'string' }
           }
         },
-        'message': "Restaurant Schema Validation Failed."
-      }
+        'message': 'Restaurant Schema Validation Failed.'
+      };
       const restaurants = db.createCollection('restaurants', { 'schema': restaurantSchema })
         .then(
           () => {
@@ -85,7 +85,7 @@ db.listDatabases().then((names) => {
           (err) => {
             console.error(err);
           }
-        )
+        );
 
       //users collection
 
@@ -93,14 +93,15 @@ db.listDatabases().then((names) => {
         rule: {
           'type': 'object',
           'properties': {
+            'userId': { 'type': 'number' },
             'firstName': { 'type': 'string' },
             'lastName': { 'type': 'string' },
             'phoneNumber': { 'type': 'string' },
             'email': { 'type': 'string' }
           }
         },
-        'message': "User Schema Validation Failed."
-      }
+        'message': 'User Schema Validation Failed.'
+      };
 
       const users = db.createCollection('users', { 'schema': userSchema })
         .then(
@@ -110,10 +111,10 @@ db.listDatabases().then((names) => {
           (err) => {
             console.error(err);
           }
-        )
-    })
+        );
+    });
   }
-})
+});
 
 
 
