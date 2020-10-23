@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const db = require('../database');
+// const db = require('../database');
 const calculateReservations = require('./calculateReservations');
 const cors = require('cors');
 
