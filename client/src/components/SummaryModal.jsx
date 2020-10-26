@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Modal from 'react-modal';
 
-const ConfirmationContainer = styled.div `
+const ConfirmationContainer = styled.div`
 background-color: #55b68d;
 padding: 1rem;
 padding-left: 5.5rem;
@@ -14,7 +14,7 @@ font-size: 18px;
 color: #ffffff;
 `;
 
-const ConfirmationNumber = styled.div `
+const ConfirmationNumber = styled.div`
   font-size: 14px;
   color: #ffffff;
   line-height: 1.3em;
@@ -22,14 +22,14 @@ const ConfirmationNumber = styled.div `
   padding-top: 4px;
 `;
 
-const CheckMark = styled.img `
+const CheckMark = styled.img`
 height: 48px;
 display: inline-block;
 position: absolute;
-transform: translateX(-70px)
+transform: translateX(-70px);
 `;
 
-const DetailsContainer = styled.div `
+const DetailsContainer = styled.div`
   background-color: #fffff;
   font-family: Helvetica;
   display: grid;
@@ -39,31 +39,31 @@ const DetailsContainer = styled.div `
   border-bottom: 1px solid #d8d9db;
 `;
 
-const RestaurantImage = styled.img `
+const RestaurantImage = styled.img`
   grid-row: 1 / span 4;
   width: 104px;
 `;
 
-const RestaurantName = styled.div `
+const RestaurantName = styled.div`
 font-size: 20px;
 font-weight: bold;
 line-height: 1em;
 color: #2d333f;
 `;
 
-const Icon = styled.img `
+const Icon = styled.img`
   height: 24px;
   margin-right: .8rem;
   vertical-align: middle;
 `;
 
-const Details = styled.span `
+const Details = styled.span`
   font-family: Helvetica;
   vertical-align: middle;
   font-size: 16px;
 `;
 
-const Modify = styled.span `
+const Modify = styled.span`
   font-size: 1rem;
   color: #60b2d0;
   cursor: pointer;
@@ -74,12 +74,12 @@ const Modify = styled.span `
   }
 `;
 
-const ModifyDiv = styled.div `
+const ModifyDiv = styled.div`
   margin-left: -1rem;
-  transform: translateY(6px)
+  transform: translateY(6px);
 `;
 
-const Button = styled.div `
+const Button = styled.div`
   font-family: Helvetica;
   font-size: 16px;
   font-weight: 500;
@@ -96,7 +96,7 @@ const Button = styled.div `
   margin: 16px auto auto 16px;
 `;
 
-const Exit = styled.img `
+const Exit = styled.img`
   position: absolute;
   right: 6px;
   top: 6px;
@@ -134,7 +134,7 @@ class SummaryModal extends React.Component {
           }}
         >
           <ConfirmationContainer>
-            <CheckMark src = 'https://www.clker.com/cliparts/G/d/S/g/r/N/white-checkmark-in-circle-md.png'></CheckMark>
+            <CheckMark src='https://www.clker.com/cliparts/G/d/S/g/r/N/white-checkmark-in-circle-md.png'></CheckMark>
             <div>
               Thanks, Your reservation is confirmed.
               <ConfirmationNumber>Confirmation #28425</ConfirmationNumber>

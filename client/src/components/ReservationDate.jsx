@@ -4,11 +4,11 @@ import styled from 'styled-components';
 
 const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-const Container = styled.div `
-  display: inline-block
+const Container = styled.div`
+  display: inline-block;
 `;
 
-const DateTitle = styled.div `
+const DateTitle = styled.div`
   font-size: .875rem;
   font-weight: 500;
   padding-bottom: .25rem;
@@ -16,7 +16,7 @@ const DateTitle = styled.div `
   text-align: left;
 `;
 
-const DateButton = styled.button `
+const DateButton = styled.button`
 background-color: white;
 text-align: left;
 box-sizing: border-box;

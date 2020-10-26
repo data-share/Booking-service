@@ -6,7 +6,7 @@ const pool = new Pool(connection);
 pool.connect();
 
 const getReservations = (restaurantId, callback) => {
-  pool.query('SELECT * FROM bookings WHERE restaurantId = $1', [restaurantId], (err, res) => {
+  pool.query('SELECT * FROM bookings WHERE restaurantId = $1', [restaurantId.restaurantId], (err, res) => {
     if (err) {
       callback(err.stack);
     } else {
@@ -30,7 +30,17 @@ const addReservation = (reservation, callback) => {
     if (err) {
       callback(err.stack);
     } else {
-      callback(null, res);
+      callback(null, res.rows);
+    }
+  });
+};
+
+const addRestaurant = (restaurant, callback) => {
+  pool.query('INSERT INTO restaurants $1', [restaurant], (err, res) => {
+    if (err) {
+      callback(err.stack);
+    } else {
+      callback(res.rows);
     }
   });
 };
@@ -39,4 +49,5 @@ module.exports = {
   getReservations,
   getRestaurantName,
   addReservation,
+  addRestaurant,
 };

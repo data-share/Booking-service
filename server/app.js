@@ -1,12 +1,14 @@
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-// const db = require('../database');
+const db = require('../database/postgres');
 const calculateReservations = require('./calculateReservations');
 const cors = require('cors');
-
+const compression = require('compression');
 const app = express();
 
+app.use(compression())
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -29,6 +31,7 @@ app.get('/api/bookings/restaurantName/:restaurantId', (req, res) => {
 
 app.post('/api/bookings/:restaurantId', (req, res) => {
   const reservation = req.body;
+  // console.log(reservation)
   reservation.restaurantId = req.params.restaurantId;
   db.addReservation(reservation, (err) => {
     if (err) {
@@ -42,11 +45,12 @@ app.post('/api/bookings/:restaurantId', (req, res) => {
 app.get('/api/bookings/:restaurantId', (req, res) => {
   const reservation = req.query;
   reservation.restaurantId = req.params.restaurantId;
-  db.getReservations(reservation, (err, reservationData, restaurantData) => {
+  // console.log(reservation)
+  db.getReservations(reservation, (err, result) => {
     if (err) {
       res.status(400).send('error finding reservations');
     } else {
-      res.status(200).send(calculateReservations(reservationData, restaurantData, reservation));
+      res.status(200).send(result);
     }
   });
 });

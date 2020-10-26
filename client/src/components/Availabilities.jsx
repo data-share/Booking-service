@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = styled.button `
+const Button = styled.button`
   font-family: Helvetica;
   background-color: #da3743;
   font-size: .875rem;
@@ -20,13 +20,13 @@ const Button = styled.button `
   }
 `;
 
-const Select = styled.div `
+const Select = styled.div`
   font-size: 18px;
   font-weight: 700;
   line-height: 24px;
   font-family: Helvetica;
   margin: .5rem;
-  text-align: left
+  text-align: left;
 `;
 
 class Availabilities extends React.Component {
@@ -34,7 +34,7 @@ class Availabilities extends React.Component {
     super(props);
   }
 
-  pickTime (e) {
+  pickTime(e) {
     this.props.handleReserve(e.target.value);
   }
 
@@ -43,7 +43,7 @@ class Availabilities extends React.Component {
       <div>
         <Select>Select a time:</Select>
         {this.props.availabilities.map((availability) => (
-          <Button onClick={this.pickTime.bind(this)} key={availability} value={(new Date(availability)).toLocaleTimeString([], {timeStyle: 'short'})}>{(new Date(availability)).toLocaleTimeString([], {timeStyle: 'short'})}</Button>
+          <Button onClick={this.pickTime.bind(this)} key={availability} value={(new Date(availability)).toLocaleTimeString([], { timeStyle: 'short' })}>{(new Date(availability)).toLocaleTimeString([], { timeStyle: 'short' })}</Button>
         ))}
       </div>
     );

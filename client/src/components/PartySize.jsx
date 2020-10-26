@@ -6,11 +6,11 @@ for (let i = 1; i <= 10; i++) {
   options.push(i);
 }
 
-const Container = styled.div `
-  display: inline-block
+const Container = styled.div`
+  display: inline-block;
 `;
 
-const PartyTitle = styled.div `
+const PartyTitle = styled.div`
   font-size: .875rem;
   font-weight: 500;
   padding-bottom: .25rem;
@@ -18,7 +18,7 @@ const PartyTitle = styled.div `
   text-align: left;
 `;
 
-const PartySelect = styled.select `
+const PartySelect = styled.select`
   box-sizing: border-box;
   border: none;
   border-bottom: 1px solid #d8d9db;
