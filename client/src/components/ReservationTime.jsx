@@ -2,11 +2,11 @@ import React from 'react';
 import Select, { components } from 'react-select';
 import styled from 'styled-components';
 
-const Container = styled.div `
-  display: inline-block
+const Container = styled.div`
+  display: inline-block;
 `;
 
-const TimeTitle = styled.div `
+const TimeTitle = styled.div`
   font-size: .875rem;
   font-weight: 500;
   padding-bottom: .25rem;
@@ -14,7 +14,7 @@ const TimeTitle = styled.div `
   text-align: left;
 `;
 
-const TimeSelect = styled.select `
+const TimeSelect = styled.select`
   box-sizing: border-box;
   border: none;
   border-bottom: 1px solid #d8d9db;

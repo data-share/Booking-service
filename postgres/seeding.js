@@ -133,33 +133,9 @@ var writeBooking = function (arr, index) {
     console.log('completed writing ' + index + ' to file');
   }).catch((err) => { console.log(err); });
 };
-// for (let i = 1; i <= 15000000; i += 1) {
-//   record.push(bookings(i));
-//   if (i % 10000 === 0) {
-//     console.log('booking record ' + i + ' written');
-//     writeBooking(record, i);
-//     record = [];
-//   }
-// }
-// for (let i = 15000001; i <= 30000000; i += 1) {
-//   record.push(bookings(i));
-//   if (i % 10000 === 0) {
-//     console.log('booking record ' + i + ' written');
-//     writeBooking(record, i);
-//     record = [];
-//   }
-// }
-// for (let i = 30000001; i <= 45000000; i += 1) {
-//   record.push(bookings(i));
-//   if (i % 10000 === 0) {
-//     console.log('booking record ' + i + ' written');
-//     writeBooking(record, i);
-//     record = [];
-//   }
-// }
-for (let i = 45000001; i <= 60000000; i += 1) {
+for (let i = 15000001; i <= 45000000; i += 1) {
   record.push(bookings(i));
-  if (i % 10000 === 0) {
+  if (i % 100000 === 0) {
     console.log('booking record ' + i + ' written');
     writeBooking(record, i);
     record = [];

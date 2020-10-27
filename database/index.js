@@ -33,6 +33,7 @@ const getRestaurantName = (restaurantId, callback) => {
 };
 
 const getReservations = (data, callback) => {
+
   const timeRange = 2.5 * 60 * 60 * 1000;
   dbConnection.query(`select partySize, date from reservations where restaurantId = ${data.restaurantId} and date >= ${Date.parse(data.date) - timeRange} and date <= ${Date.parse(data.date) + timeRange}`, (err, reservationData) => {
     if (err) {

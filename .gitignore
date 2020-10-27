@@ -39,3 +39,6 @@ arangodb/restaurants.csv
 
 #keys
 env.json
+
+#new relic
+newrelic.js

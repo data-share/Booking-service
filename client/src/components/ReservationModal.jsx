@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Modal from 'react-modal';
 import axios from 'axios';
 
-const RestaurantImage = styled.img `
+const RestaurantImage = styled.img`
   height: 4rem;
   width: 4rem;
   border-radius: 4px;
@@ -11,13 +11,13 @@ const RestaurantImage = styled.img `
   grid-row: 2 / span 2;
 `;
 
-const Icon = styled.img `
+const Icon = styled.img`
   height: 24px;
   margin: 8px .8rem;
   vertical-align: middle;
 `;
 
-const Header = styled.h2 `
+const Header = styled.h2`
   font-size: 18px;
   font-weight: 700;
   line-height: 24px;
@@ -28,14 +28,14 @@ const Header = styled.h2 `
 
 `;
 
-const Details = styled.span `
+const Details = styled.span`
   font-family: Helvetica;
   display: inline-block;
   vertical-align: middle;
   text-align: center;
 `;
 
-const RestaurantName = styled.h2 `
+const RestaurantName = styled.h2`
   font-size: 20px;
   font-weight: 700;
   line-height: 28px;
@@ -46,11 +46,11 @@ const RestaurantName = styled.h2 `
   text-align: left;
 `;
 
-const ReservationDetails = styled.div `
-  display: inline-block
+const ReservationDetails = styled.div`
+  display: inline-block;
 `;
 
-const CountDown = styled.div `
+const CountDown = styled.div`
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -63,7 +63,7 @@ const CountDown = styled.div `
   border-radius: 4px;
 `;
 
-const Button = styled.button `
+const Button = styled.button`
   font-family: sans-serif;
   background-color: #da3743;
   font-size: 1rem;
@@ -78,13 +78,13 @@ const Button = styled.button `
   grid-column: 1 / span 2;
 `;
 
-const FormContainer = styled.div `
+const FormContainer = styled.div`
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 48px 66px 66px 66px 28px 28px 80px 40px;
 `;
 
-const DinerDetails = styled.div `
+const DinerDetails = styled.div`
   font-family: Helvetica;
   font-weight: 500;
   font-size: 16px;
@@ -93,16 +93,16 @@ const DinerDetails = styled.div `
   margin: 16px 0;
 `;
 
-const CheckboxLines = styled.div `
+const CheckboxLines = styled.div`
   grid-column: 1 / span 2;
   font-size: 1rem;
   font-weight: 300;
   line-height: 1.5rem;
   margin-bottom: 4px;
-  font-family: Helvetica
+  font-family: Helvetica;
 `;
 
-const Ending = styled.div `
+const Ending = styled.div`
   grid-column: 1 / span 2;
   font-size: 14px;
   line-height: 20px;
@@ -110,7 +110,7 @@ const Ending = styled.div `
   color: #2d333f;
 `;
 
-const FormLeft = styled.input `
+const FormLeft = styled.input`
   width: 308px;
   height: 48px;
   align-self: start;
@@ -121,7 +121,7 @@ const FormLeft = styled.input `
   margin-bottom
 `;
 
-const FormRight = styled.input `
+const FormRight = styled.input`
   width: 308px;
   height: 48px;
   align-self: start;
@@ -131,7 +131,7 @@ const FormRight = styled.input `
   padding-left: 8px;
 `;
 
-const SelectLeft = styled.select `
+const SelectLeft = styled.select`
   width: 322px;
   height: 54px;
   align-self: start;
@@ -141,7 +141,7 @@ const SelectLeft = styled.select `
   padding-left: 8px;
 `;
 
-const DetailContainer = styled.div `
+const DetailContainer = styled.div`
   display: grid;
   grid-template-columns: 80px 1fr 1fr 1fr;
   grid-template-rows: 40px 32px 32px 16px 40px;
@@ -176,7 +176,7 @@ class ReservationModal extends React.Component {
     if (this.state.seconds > 0) {
       this.setState({
         seconds: this.state.seconds - 1
-      })
+      });
     } else {
       this.setState({
         seconds: 59,
@@ -185,7 +185,7 @@ class ReservationModal extends React.Component {
     }
   }
 
-  handleCloseModal () {
+  handleCloseModal() {
     this.props.handleDisplayTimes();
     this.props.hideModal();
     const data = {
@@ -202,31 +202,31 @@ class ReservationModal extends React.Component {
   }
 
   handleFirst(e) {
-    this.setState ({
+    this.setState({
       firstName: e.target.value
     });
   }
 
   handleLast(e) {
-    this.setState ({
+    this.setState({
       lastName: e.target.value
     });
   }
 
   handleContact(e) {
-    this.setState ({
+    this.setState({
       contactInfo: e.target.value
     });
   }
 
   handleEmail(e) {
-    this.setState ({
+    this.setState({
       email: e.target.value
     });
   }
 
   handleOccasion(e) {
-    this.setState ({
+    this.setState({
       occasion: e.target.value
     });
   }
@@ -267,7 +267,7 @@ class ReservationModal extends React.Component {
               <Details>{`${this.props.partySize} people`}</Details>
             </div>
             <CountDown>
-            We’re holding this table for you for {this.state.minutes}:{this.state.seconds < 10 ? `0${this.state.seconds}` : this.state.seconds} minutes
+              We’re holding this table for you for {this.state.minutes}:{this.state.seconds < 10 ? `0${this.state.seconds}` : this.state.seconds} minutes
             </CountDown>
           </DetailContainer>
           <FormContainer>

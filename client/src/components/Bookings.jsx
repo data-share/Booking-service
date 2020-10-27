@@ -9,7 +9,7 @@ import ReservationModal from './ReservationModal.jsx';
 import Calendar from './Calendar.jsx';
 import SummaryModal from './SummaryModal.jsx';
 
-const Wrapper = styled.section `
+const Wrapper = styled.section`
   width: 320px;
   border-radius: 2px;
   background-color: #fff;
@@ -22,13 +22,13 @@ const Wrapper = styled.section `
   top: 10px;
 `;
 
-const Title = styled.div `
+const Title = styled.div`
   font-family: Helvetica;
   border-bottom: 1px solid #d8d9db;
   margin-bottom: 16px;
 `;
 
-const Button = styled.button `
+const Button = styled.button`
   font-family: sans-serif;
   background-color: #da3743;
   font-size: 1rem;
@@ -43,16 +43,16 @@ const Button = styled.button `
   cursor: pointer;
 `;
 
-const BookedAmount = styled.span `
+const BookedAmount = styled.span`
   font-family: Helvetica;
   height: 24px;
   font-size: 14px;
   font-weight: 500;
   padding: .75rem;
-  vertical-align: bottom
+  vertical-align: bottom;
 `;
 
-const Container = styled.div `
+const Container = styled.div`
   position: absolute;
   right: 75px;
   height: 2000px;
@@ -82,8 +82,9 @@ class Bookings extends React.Component {
       }
     })
       .then(response => {
+        console.log(response);
         this.setState({
-          restaurantName: response.data[0].name
+          restaurantName: response.data[0].restaurantname
         });
       });
   }
@@ -164,17 +165,17 @@ class Bookings extends React.Component {
     let calendarModal;
     let summaryModal;
     if (renderConfirmationModal) {
-      confirmationModal = < ReservationModal restaurantId={this.state.restaurantId} restaurantName={this.state.restaurantName} partySize={this.state.partySize} date={this.state.reservationDate} time={this.state.reservationTime} hideModal={this.hideModal.bind(this)} handleDisplayTimes={this.handleDisplayTimes.bind(this)}/>;
+      confirmationModal = < ReservationModal restaurantId={this.state.restaurantId} restaurantName={this.state.restaurantName} partySize={this.state.partySize} date={this.state.reservationDate} time={this.state.reservationTime} hideModal={this.hideModal.bind(this)} handleDisplayTimes={this.handleDisplayTimes.bind(this)} />;
     } else {
       confirmationModal = <div></div>;
     }
     if (renderCalenderModal) {
-      calendarModal = < Calendar selectedDate={this.state.reservationDate} pickDate={this.pickDate.bind(this)}/>;
+      calendarModal = < Calendar selectedDate={this.state.reservationDate} pickDate={this.pickDate.bind(this)} />;
     } else {
       calendarModal = <div></div>;
     }
     if (renderSummaryModal) {
-      summaryModal = < SummaryModal restaurantName={this.state.restaurantName} partySize={this.state.partySize} date={this.state.reservationDate} time={this.state.reservationTime} hideModal={this.hideSummaryModal.bind(this)}/>;
+      summaryModal = < SummaryModal restaurantName={this.state.restaurantName} partySize={this.state.partySize} date={this.state.reservationDate} time={this.state.reservationTime} hideModal={this.hideSummaryModal.bind(this)} />;
     } else {
       summaryModal = <div></div>;
     }
@@ -183,12 +184,12 @@ class Bookings extends React.Component {
         <Container >
           <Wrapper>
             <Title>Make a reservation</Title>
-            < PartySize handlePartySize={this.handlePartySize.bind(this)}/>
+            < PartySize handlePartySize={this.handlePartySize.bind(this)} />
             < ReservationDate selectedDate={this.state.reservationDate} handleDate={this.handleDate.bind(this)} />
             < ReservationTime handleTime={this.handleTime.bind(this)} />
             {this.state.displayTimes ? < Availabilities handleReserve={this.handleReserve.bind(this)} availabilities={this.state.availabilities} /> : < Button onClick={this.handleSearch.bind(this)} >Find a table</Button>}
             <BookedAmount>
-                 📈 Booked {5 + Math.floor(Math.random() * 5)} times today
+              📈 Booked {5 + Math.floor(Math.random() * 5)} times today
             </BookedAmount>
           </Wrapper>
           {confirmationModal}
